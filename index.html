@@ -50,6 +50,16 @@
 
     body.dark .jiko { color: #d7b8ff; }
 
+    .clock {
+      margin-top: 10px;
+      font-weight: 600;
+      color: #5a1ea3;
+      font-size: 16px;
+      animation: fadeIn 1.8s ease forwards;
+    }
+
+    body.dark .clock { color: #d2aaff; }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -95,69 +105,6 @@
 
     body.dark h2 { color: #d5b3ff; border-color: #b584ff; }
 
-    .admins {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 15px;
-    }
-
-    .admin-btn {
-      background: #5a1ea3;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      font-size: 14px;
-      box-shadow: 0 0 0 rgba(140, 40, 255, 0);
-    }
-
-    .admin-btn:hover {
-      background: #8a3cd8;
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(140, 40, 255, 0.6);
-    }
-
-    body.dark .admin-btn { background: #7a2be3; }
-    body.dark .admin-btn:hover {
-      background: #9c58ff;
-      box-shadow: 0 0 20px rgba(180, 110, 255, 0.8);
-    }
-
-    .note {
-      text-align: center;
-      font-style: italic;
-      margin-top: 10px;
-      color: #5a1ea3;
-      font-size: 13px;
-    }
-
-    body.dark .note { color: #d2aaff; }
-
-    /* GALERI */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(140, 40, 255, 0.5);
-    }
-
     footer {
       text-align: center;
       margin: 40px 0;
@@ -178,71 +125,12 @@
     section.hidden { opacity: 0; transform: translateY(50px); }
     section.visible { opacity: 1; transform: translateY(0); }
 
-    /* Popup Style */
-    .popup-bg {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    .popup {
-      background: white;
-      color: #333;
-      padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      width: 280px;
-      box-shadow: 0 0 15px rgba(90, 30, 163, 0.5);
-      animation: fadeIn 0.3s ease forwards;
-    }
-
-    body.dark .popup {
-      background: #3b0066;
-      color: #eee;
-      box-shadow: 0 0 20px rgba(180, 110, 255, 0.7);
-    }
-
-    .popup button {
-      margin-top: 12px;
-      border: none;
-      border-radius: 20px;
-      padding: 8px 14px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .popup .go-btn {
-      background: #5a1ea3;
-      color: white;
-    }
-
-    .popup .go-btn:hover {
-      background: #8a3cd8;
-      box-shadow: 0 0 10px rgba(140, 40, 255, 0.6);
-    }
-
-    .popup .cancel-btn {
-      background: #ccc;
-      margin-left: 10px;
-    }
-
-    .popup .cancel-btn:hover { background: #aaa; }
-
-    /* RESPONSIVE FIX */
     @media (max-width: 600px) {
       header img { width: 100px; }
       h1 { font-size: 1.8em; }
       section { margin: 20px 10px; padding: 20px; }
+      .clock { font-size: 14px; }
       .theme-toggle { padding: 6px 12px; font-size: 14px; }
-      .gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-      .gallery img { border-radius: 10px; }
-      .admins { gap: 8px; }
-      .admin-btn { font-size: 13px; padding: 8px 14px; }
     }
   </style>
 </head>
@@ -253,70 +141,45 @@
     <img src="logo_mw.jpeg" alt="Logo Michie World">
     <h1>Michie World</h1>
     <p class="jiko">“Always your number one, till infinity and beyond! Hello everyone, it's Michiee!!”</p>
+    <div class="clock" id="clock">🕒 Memuat waktu...</div>
   </header>
-
-  <section class="hidden">
-    <h2>Galeri Michie World</h2>
-    <div class="gallery">
-      <img src="grup_ofc.jpeg" alt="Grup OFC">
-      <img src="saluran_mw.jpeg" alt="Saluran MW">
-      <img src="akun_tiktok.jpeg" alt="Akun TikTok">
-      <img src="michie_event.jpeg" alt="Event MW">
-    </div>
-  </section>
 
   <footer>
     Website dibuat oleh <a href="https://stevensaa-re.github.io/stvnproject" target="_blank">STN Project Reborn</a> ✨
   </footer>
 
-  <div class="popup-bg" id="popupBg">
-    <div class="popup" id="popup">
-      <p id="popupText"></p>
-      <button class="go-btn" id="goBtn">Lanjutkan</button>
-      <button class="cancel-btn" id="cancelBtn">Batal</button>
-    </div>
-  </div>
-
   <script>
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          entry.target.classList.remove("hidden");
-        }
-      });
-    }, { threshold: 0.2 });
-    sections.forEach(section => observer.observe(section));
-
+    // Dark-Light Mode
     const toggleBtn = document.getElementById("themeToggle");
     toggleBtn.addEventListener("click", () => {
       document.body.classList.toggle("dark");
       toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
     });
 
-    const popupBg = document.getElementById("popupBg");
-    const popupText = document.getElementById("popupText");
-    const goBtn = document.getElementById("goBtn");
-    const cancelBtn = document.getElementById("cancelBtn");
-    let currentLink = "";
+    // Jam dan Tanggal
+    const clockElement = document.getElementById("clock");
+    function updateClock() {
+      const now = new Date();
+      const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+      const months = [
+        "Januari","Februari","Maret","April","Mei","Juni",
+        "Juli","Agustus","September","Oktober","November","Desember"
+      ];
 
-    document.querySelectorAll(".admin-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const name = btn.getAttribute("data-name");
-        const link = btn.getAttribute("data-link");
-        currentLink = link;
-        popupText.textContent = `Kamu akan menuju ke akun TikTok ${name}`;
-        popupBg.style.display = "flex";
-      });
-    });
+      const day = days[now.getDay()];
+      const date = now.getDate();
+      const month = months[now.getMonth()];
+      const year = now.getFullYear();
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const seconds = String(now.getSeconds()).padStart(2, "0");
 
-    goBtn.addEventListener("click", () => {
-      window.open(currentLink, "_blank");
-      popupBg.style.display = "none";
-    });
-    cancelBtn.addEventListener("click", () => popupBg.style.display = "none");
-    popupBg.addEventListener("click", e => { if (e.target === popupBg) popupBg.style.display = "none"; });
+      clockElement.textContent = `🕒 ${hours}:${minutes}:${seconds} | ${day}, ${date} ${month} ${year}`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
   </script>
+
 </body>
 </html>

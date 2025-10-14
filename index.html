@@ -32,15 +32,13 @@
     }
 
     h1 {
-      font-size: 2.5em;
+      font-size: 2.2em;
       margin-top: 10px;
       color: #5a1ea3;
       animation: fadeIn 1.2s ease forwards;
     }
 
-    body.dark h1 {
-      color: #cda8ff;
-    }
+    body.dark h1 { color: #cda8ff; }
 
     .jiko {
       font-style: italic;
@@ -50,9 +48,7 @@
       animation: fadeIn 1.5s ease forwards;
     }
 
-    body.dark .jiko {
-      color: #d7b8ff;
-    }
+    body.dark .jiko { color: #d7b8ff; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
@@ -78,9 +74,9 @@
     section {
       max-width: 900px;
       margin: 40px auto;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 15px;
-      padding: 30px;
+      padding: 25px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.5s ease, opacity 0.5s ease;
     }
@@ -94,6 +90,7 @@
       color: #5a1ea3;
       border-bottom: 2px solid #a86bd8;
       padding-bottom: 5px;
+      font-size: 1.4em;
     }
 
     body.dark h2 { color: #d5b3ff; border-color: #b584ff; }
@@ -101,7 +98,7 @@
     .admins {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 10px;
       justify-content: center;
       margin-top: 15px;
     }
@@ -110,24 +107,21 @@
       background: #5a1ea3;
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 10px 18px;
       border-radius: 20px;
       cursor: pointer;
       transition: all 0.4s ease;
-      font-size: 15px;
+      font-size: 14px;
       box-shadow: 0 0 0 rgba(140, 40, 255, 0);
     }
 
     .admin-btn:hover {
       background: #8a3cd8;
-      transform: scale(1.07);
+      transform: scale(1.05);
       box-shadow: 0 0 15px rgba(140, 40, 255, 0.6);
     }
 
-    body.dark .admin-btn {
-      background: #7a2be3;
-    }
-
+    body.dark .admin-btn { background: #7a2be3; }
     body.dark .admin-btn:hover {
       background: #9c58ff;
       box-shadow: 0 0 20px rgba(180, 110, 255, 0.8);
@@ -136,25 +130,25 @@
     .note {
       text-align: center;
       font-style: italic;
-      margin-top: 15px;
+      margin-top: 10px;
       color: #5a1ea3;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     body.dark .note { color: #d2aaff; }
 
+    /* GALERI */
     .gallery {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
       justify-content: center;
       align-items: center;
-      gap: 15px;
-      flex-wrap: nowrap;
-      overflow-x: auto;
     }
 
     .gallery img {
-      width: 280px;
-      border-radius: 15px;
+      width: 100%;
+      border-radius: 12px;
       box-shadow: 0 3px 8px rgba(0,0,0,0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -168,12 +162,14 @@
       text-align: center;
       margin: 40px 0;
       font-weight: 500;
+      font-size: 14px;
     }
 
     a {
       color: #5a1ea3;
       text-decoration: none;
       font-weight: bold;
+      word-break: break-word;
     }
 
     a:hover { text-decoration: underline; }
@@ -196,10 +192,10 @@
     .popup {
       background: white;
       color: #333;
-      padding: 25px 30px;
+      padding: 20px;
       border-radius: 15px;
       text-align: center;
-      width: 300px;
+      width: 280px;
       box-shadow: 0 0 15px rgba(90, 30, 163, 0.5);
       animation: fadeIn 0.3s ease forwards;
     }
@@ -211,10 +207,10 @@
     }
 
     .popup button {
-      margin-top: 15px;
+      margin-top: 12px;
       border: none;
       border-radius: 20px;
-      padding: 8px 16px;
+      padding: 8px 14px;
       cursor: pointer;
       font-weight: bold;
       transition: 0.3s;
@@ -236,6 +232,18 @@
     }
 
     .popup .cancel-btn:hover { background: #aaa; }
+
+    /* RESPONSIVE FIX */
+    @media (max-width: 600px) {
+      header img { width: 100px; }
+      h1 { font-size: 1.8em; }
+      section { margin: 20px 10px; padding: 20px; }
+      .theme-toggle { padding: 6px 12px; font-size: 14px; }
+      .gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .gallery img { border-radius: 10px; }
+      .admins { gap: 8px; }
+      .admin-btn { font-size: 13px; padding: 8px 14px; }
+    }
   </style>
 </head>
 <body>
@@ -248,53 +256,17 @@
   </header>
 
   <section class="hidden">
-    <h2>Tanggal Dibuatnya Michie World</h2>
-    <p>Michie World resmi dibuat pada tanggal <strong>1 Juni 2024</strong>. Sejak saat itu, MW menjadi tempat berkumpulnya para penggemar Michie untuk saling berbagi keseruan dan dukungan.</p>
-  </section>
-
-  <section class="hidden">
-    <h2>Kenapa Memilih Membuat Saluran Tentang Michie?</h2>
-    <p>Saluran ini dibuat karena ketertarikan besar terhadap Michie yang merupakan bagian dari generasi baru pada masanya. Dengan pesonanya yang unik dan energinya yang positif, Michie berhasil menarik perhatian banyak orang, termasuk para admin MW.</p>
-  </section>
-
-  <section class="hidden">
-    <h2>Latar Belakang Michie World</h2>
-    <p>Michie World hadir sebagai wadah komunitas yang penuh semangat dan kreativitas. Dibentuk oleh sekelompok penggemar Michie yang ingin menyebarkan kebahagiaan, inspirasi, dan kehangatan kepada sesama penggemar melalui konten dan interaksi positif.</p>
-  </section>
-
-  <section class="hidden">
-    <h2>Admin Michie World</h2>
-    <div class="admins">
-      <button class="admin-btn" data-name="Zenn (Owner)" data-link="https://www.tiktok.com/@zennmichie?_t=ZS-8uVff1cEazi&_r=1">Zenn (Owner)</button>
-      <button class="admin-btn" data-name="Zann" data-link="https://www.tiktok.com/@zanmichie_?_t=ZS-90VgIZO8CZA&_r=1">Zann</button>
-      <button class="admin-btn" data-name="Zevv" data-link="https://www.tiktok.com/@zevvalexandra?_t=ZS-90V7i8jupVt&_r=1">Zevv</button>
-      <button class="admin-btn" data-name="Dami" data-link="https://www.tiktok.com/@damichie?_t=ZS-90V7bTdJKWC&_r=1">Dami</button>
-      <button class="admin-btn" data-name="Steven" data-link="https://www.tiktok.com/@stevnsaa?_t=ZS-90V7laCFgMH&_r=1">Steven</button>
-      <button class="admin-btn" data-name="Xenz" data-link="https://www.tiktok.com/@xenzoctaviani?_t=ZS-90V8hLLbTgV&_r=1">Xenz</button>
-      <button class="admin-btn" data-name="Haikal" data-link="https://www.tiktok.com/@kalz.mw?_t=ZS-90VKDwp9yY1&_r=1">Haikal</button>
-    </div>
-    <p class="note">Note : Klik nama admin untuk menuju ke akun TikTok para admin! </p>
-  </section>
-
-  <section class="hidden">
     <h2>Galeri Michie World</h2>
     <div class="gallery">
       <img src="grup_ofc.jpeg" alt="Grup OFC">
       <img src="saluran_mw.jpeg" alt="Saluran MW">
       <img src="akun_tiktok.jpeg" alt="Akun TikTok">
+      <img src="michie_event.jpeg" alt="Event MW">
     </div>
   </section>
 
-  <section class="hidden">
-    <h2>Ikuti Kami</h2>
-    <p><a href="https://linktr.ee/ZennMilynn" target="_blank">Linktree owner (Zenn)</a></p>
-    <p><a href="https://chat.whatsapp.com/IuJm7U5KARdAu8BHpt747i" target="_blank">Grup Chat Official Michie World</a></p>
-    <p><a href="https://whatsapp.com/channel/0029VagZL4P72WU1ccRubJ1E" target="_blank">Saluran Official Michie World</a></p>
-    <p><a href="https://www.tiktok.com/@ofcmichieworld?_t=zs-8w3wgkcs2m6&_r=1" target="_blank">TikTok Official Michie World</a></p>
-  </section>
-
   <footer>
-    Website dibuat oleh <a href="https://stevensaa-re.github.io/stvnproject" target="_blank">STN Project Reborn</a> 
+    Website dibuat oleh <a href="https://stevensaa-re.github.io/stvnproject" target="_blank">STN Project Reborn</a> ✨
   </footer>
 
   <div class="popup-bg" id="popupBg">
@@ -315,7 +287,6 @@
         }
       });
     }, { threshold: 0.2 });
-
     sections.forEach(section => observer.observe(section));
 
     const toggleBtn = document.getElementById("themeToggle");
@@ -344,14 +315,8 @@
       window.open(currentLink, "_blank");
       popupBg.style.display = "none";
     });
-
-    cancelBtn.addEventListener("click", () => {
-      popupBg.style.display = "none";
-    });
-
-    popupBg.addEventListener("click", (e) => {
-      if (e.target === popupBg) popupBg.style.display = "none";
-    });
+    cancelBtn.addEventListener("click", () => popupBg.style.display = "none");
+    popupBg.addEventListener("click", e => { if (e.target === popupBg) popupBg.style.display = "none"; });
   </script>
 </body>
 </html>

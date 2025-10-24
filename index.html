@@ -3,354 +3,649 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Michie World</title>
+  <title>Michie World - Official Website</title>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #a86bd8, #ffffff);
-      color: #333;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      color: #fff;
       overflow-x: hidden;
-      transition: background 0.5s, color 0.5s;
+      transition: all 0.5s ease;
     }
 
-    body.dark {
-      background: linear-gradient(135deg, #1a001f, #3b0066);
-      color: #eee;
+    body.light-mode {
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ffecd2 100%);
+      color: #333;
     }
 
-    header {
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 40px 20px;
       position: relative;
-    }
-
-    header img {
-      width: 120px;
-      border-radius: 50%;
-      animation: fadeIn 1s ease forwards;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      margin-top: 10px;
-      color: #5a1ea3;
-      animation: fadeIn 1.2s ease forwards;
-    }
-
-    body.dark h1 {
-      color: #cda8ff;
-    }
-
-    .jiko {
-      font-style: italic;
-      color: #6e2cb3;
-      margin-top: 5px;
-      font-weight: 500;
-      animation: fadeIn 1.5s ease forwards;
-    }
-
-    body.dark .jiko {
-      color: #d7b8ff;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      padding: 20px;
     }
 
     .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: white;
-      border: none;
-      border-radius: 20px;
-      padding: 8px 16px;
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
       cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .theme-toggle:hover { background: #e6e6e6; }
-    body.dark .theme-toggle { background: #5a1ea3; color: white; }
-
-    section {
-      max-width: 900px;
-      margin: 40px auto;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-
-    body.dark section {
-      background: rgba(0, 0, 0, 0.4);
-      box-shadow: 0 4px 12px rgba(255,255,255,0.1);
-    }
-
-    h2 {
-      color: #5a1ea3;
-      border-bottom: 2px solid #a86bd8;
-      padding-bottom: 5px;
-    }
-
-    body.dark h2 { color: #d5b3ff; border-color: #b584ff; }
-
-    .admins {
       display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
+      align-items: center;
       justify-content: center;
-      margin-top: 15px;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      z-index: 1000;
     }
 
-    .admin-btn {
-      background: #5a1ea3;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      font-size: 15px;
-      box-shadow: 0 0 0 rgba(140, 40, 255, 0);
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(15deg);
+      background: rgba(255, 255, 255, 0.3);
     }
 
-    .admin-btn:hover {
-      background: #8a3cd8;
-      transform: scale(1.07);
-      box-shadow: 0 0 15px rgba(140, 40, 255, 0.6);
+    .logo-container {
+      position: relative;
+      margin-bottom: 30px;
     }
 
-    body.dark .admin-btn {
-      background: #7a2be3;
+    .logo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: float 3s ease-in-out infinite;
+      object-fit: cover;
     }
 
-    body.dark .admin-btn:hover {
-      background: #9c58ff;
-      box-shadow: 0 0 20px rgba(180, 110, 255, 0.8);
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
     }
 
-    .note {
-      text-align: center;
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 900;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #fff, #ffd1ff, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    body.light-mode .hero-title {
+      background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
       font-style: italic;
-      margin-top: 15px;
-      color: #5a1ea3;
-      font-size: 14px;
+      max-width: 700px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      opacity: 0.95;
     }
 
-    body.dark .note { color: #d2aaff; }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .section-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 50px;
+      margin-bottom: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+
+    body.light-mode .section-card {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+
+    .section-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+
+    .section-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .admin-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .admin-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .admin-card:hover::before {
+      left: 100%;
+    }
+
+    .admin-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    body.light-mode .admin-card {
+      background: rgba(102, 126, 234, 0.1);
+    }
+
+    body.light-mode .admin-card:hover {
+      background: rgba(102, 126, 234, 0.2);
+      border-color: #667eea;
+    }
+
+    .admin-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .admin-role {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      font-style: italic;
+    }
 
     .gallery {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: nowrap;
+      gap: 30px;
+      margin-top: 30px;
       overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 20px;
+      -webkit-overflow-scrolling: touch;
     }
 
-    .gallery img {
+    .gallery::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .gallery::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+
+    .gallery::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+    }
+
+    .gallery::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .gallery-item {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      flex: 0 0 auto;
       width: 280px;
-      border-radius: 15px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      scroll-snap-align: start;
     }
 
-    .gallery img:hover {
+    .gallery-item:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(140, 40, 255, 0.5);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     }
 
-    footer {
+    .gallery-item img {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      display: block;
+    }
+
+    .links-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .link-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 25px;
       text-align: center;
-      margin: 40px 0;
-      font-weight: 500;
-    }
-
-    a {
-      color: #5a1ea3;
       text-decoration: none;
-      font-weight: bold;
+      color: inherit;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
 
-    a:hover { text-decoration: underline; }
-    body.dark a { color: #d0a8ff; }
+    .link-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.25);
+    }
 
-    section.hidden { opacity: 0; transform: translateY(50px); }
-    section.visible { opacity: 1; transform: translateY(0); }
+    body.light-mode .link-card {
+      background: rgba(102, 126, 234, 0.1);
+    }
 
-    /* Popup Style */
-    .popup-bg {
+    body.light-mode .link-card:hover {
+      background: rgba(102, 126, 234, 0.2);
+      border-color: #667eea;
+    }
+
+    .link-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .link-desc {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 50px 20px;
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    .footer a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 2px solid;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer a:hover {
+      opacity: 0.7;
+    }
+
+    .modal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      justify-content: center;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
       align-items: center;
-      z-index: 999;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
     }
 
-    .popup {
-      background: white;
-      color: #333;
-      padding: 25px 30px;
-      border-radius: 15px;
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(30px);
+      border-radius: 30px;
+      padding: 40px;
+      max-width: 500px;
       text-align: center;
-      width: 300px;
-      box-shadow: 0 0 15px rgba(90, 30, 163, 0.5);
-      animation: fadeIn 0.3s ease forwards;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      animation: slideUp 0.4s ease;
     }
 
-    body.dark .popup {
-      background: #3b0066;
-      color: #eee;
-      box-shadow: 0 0 20px rgba(180, 110, 255, 0.7);
+    body.light-mode .modal-content {
+      background: #fff;
+      color: #333;
+      border-color: rgba(0, 0, 0, 0.1);
     }
 
-    .popup button {
-      margin-top: 15px;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .btn {
+      padding: 15px 40px;
+      border-radius: 50px;
       border: none;
-      border-radius: 20px;
-      padding: 8px 16px;
+      font-weight: 700;
+      font-size: 1rem;
       cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
+      transition: all 0.3s ease;
     }
 
-    .popup .go-btn {
-      background: #5a1ea3;
-      color: white;
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
     }
 
-    .popup .go-btn:hover {
-      background: #8a3cd8;
-      box-shadow: 0 0 10px rgba(140, 40, 255, 0.6);
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
     }
 
-    .popup .cancel-btn {
-      background: #ccc;
-      margin-left: 10px;
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
     }
 
-    .popup .cancel-btn:hover { background: #aaa; }
+    body.light-mode .btn-secondary {
+      background: rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .section-card {
+        padding: 30px 20px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .admin-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .gallery {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .gallery-item {
+        width: 220px;
+      }
+    }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">🌙</button>
 
-  <header>
-    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
-    <img src="logo_mw.jpeg" alt="Logo Michie World">
-    <h1>Michie World</h1>
-    <p class="jiko">“Always your number one, till infinity and beyond! Hello everyone, it's Michiee!!”</p>
-  </header>
-
-  <section class="hidden">
-    <h2>Tanggal Dibuatnya Michie World</h2>
-    <p>Michie World resmi dibuat pada tanggal <strong>1 Juni 2024</strong>. Sejak saat itu, MW menjadi tempat berkumpulnya para penggemar Michie untuk saling berbagi keseruan dan dukungan.</p>
-  </section>
-
-  <section class="hidden">
-    <h2>Kenapa Memilih Membuat Saluran Tentang Michie?</h2>
-    <p>Saluran ini dibuat karena ketertarikan besar terhadap Michie yang merupakan bagian dari generasi baru pada masanya. Dengan pesonanya yang unik dan energinya yang positif, Michie berhasil menarik perhatian banyak orang, termasuk para admin MW.</p>
-  </section>
-
-  <section class="hidden">
-    <h2>Latar Belakang Michie World</h2>
-    <p>Michie World hadir sebagai wadah komunitas yang penuh semangat dan kreativitas. Dibentuk oleh sekelompok penggemar Michie yang ingin menyebarkan kebahagiaan, inspirasi, dan kehangatan kepada sesama penggemar melalui konten dan interaksi positif.</p>
-  </section>
-
-  <section class="hidden">
-    <h2>Admin Michie World</h2>
-    <div class="admins">
-      <button class="admin-btn" data-name="Zenn (Owner)" data-link="https://www.tiktok.com/@zennmichie?_t=ZS-8uVff1cEazi&_r=1">Zenn (Owner)</button>
-      <button class="admin-btn" data-name="Zann" data-link="https://www.tiktok.com/@zanmichie_?_t=ZS-90VgIZO8CZA&_r=1">Zann</button>
-      <button class="admin-btn" data-name="Zevv" data-link="https://www.tiktok.com/@zevvalexandra?_t=ZS-90V7i8jupVt&_r=1">Zevv</button>
-      <button class="admin-btn" data-name="Dami" data-link="https://www.tiktok.com/@damichie?_t=ZS-90V7bTdJKWC&_r=1">Dami</button>
-      <button class="admin-btn" data-name="Steven" data-link="https://www.tiktok.com/@stevnsaa?_t=ZS-90V7laCFgMH&_r=1">Steven</button>
-      <button class="admin-btn" data-name="Xenz" data-link="https://www.tiktok.com/@xenzoctaviani?_t=ZS-90V8hLLbTgV&_r=1">Xenz</button>
-      <button class="admin-btn" data-name="Haikal" data-link="https://www.tiktok.com/@kalz.mw?_t=ZS-90VKDwp9yY1&_r=1">Haikal</button>
+  <section class="hero">
+    <div class="logo-container">
+      <img src="logo_mw.jpeg" alt="Michie World Logo" class="logo">
     </div>
-    <p class="note">Note : Klik nama admin untuk menuju ke akun TikTok para admin! </p>
+    <h1 class="hero-title">Michie World</h1>
+    <p class="hero-subtitle">"Always your number one, till infinity and beyond! Hello everyone, it's Michiee!!"</p>
+    <div class="scroll-indicator">⬇️ scroll for more! ⬇️</div>
   </section>
 
-  <section class="hidden">
-    <h2>Galeri Michie World</h2>
-    <div class="gallery">
-      <img src="grup_ofc.jpeg" alt="Grup OFC">
-      <img src="saluran_mw.jpeg" alt="Saluran MW">
-      <img src="akun_tiktok.jpeg" alt="Akun TikTok">
+  <div class="container">
+    <div class="section-card">
+      <h2 class="section-title">Tentang Michie World</h2>
+      <p class="section-text">
+        Michie World resmi dibuat pada tanggal <strong>1 Juni 2024</strong>. Sejak saat itu, MW menjadi tempat berkumpulnya para penggemar Michie untuk saling berbagi keseruan dan dukungan. Kami hadir sebagai wadah komunitas yang penuh semangat dan kreativitas, dibentuk oleh sekelompok penggemar yang ingin menyebarkan kebahagiaan, inspirasi, dan kehangatan kepada sesama.
+      </p>
     </div>
-  </section>
 
-  <section class="hidden">
-    <h2>Ikuti Kami</h2>
-    <p><a href="https://linktr.ee/ZennMilynn" target="_blank">Linktree owner (Zenn)</a></p>
-    <p><a href="https://chat.whatsapp.com/IuJm7U5KARdAu8BHpt747i" target="_blank">Grup Chat Official Michie World</a></p>
-    <p><a href="https://whatsapp.com/channel/0029VagZL4P72WU1ccRubJ1E" target="_blank">Saluran Official Michie World</a></p>
-    <p><a href="https://www.tiktok.com/@ofcmichieworld?_t=zs-8w3wgkcs2m6&_r=1" target="_blank">TikTok Official Michie World</a></p>
-  </section>
+    <div class="section-card">
+      <h2 class="section-title">Kenapa Michie?</h2>
+      <p class="section-text">
+        Saluran ini dibuat karena ketertarikan besar terhadap Michie yang merupakan bagian dari generasi baru pada masanya. Dengan pesonanya yang unik dan energinya yang positif, Michie berhasil menarik perhatian banyak orang, termasuk para admin MW. Kami percaya bahwa setiap momen bersama Michie adalah momen yang berharga.
+      </p>
+    </div>
 
-  <footer>
-    Website dibuat oleh <a href="https://stevensaa-re.github.io/stvnproject" target="_blank">STN Project Reborn</a> 
+    <div class="section-card">
+      <h2 class="section-title">Tim Admin</h2>
+      <p class="section-text" style="margin-bottom: 20px; text-align: center; font-style: italic; opacity: 0.8;">
+        Klik untuk mengunjungi akun TikTok admin
+      </p>
+      <div class="admin-grid">
+        <div class="admin-card" data-name="Zenn" data-role="Owner" data-link="https://www.tiktok.com/@zennmichie?_t=ZS-8uVff1cEazi&_r=1">
+          <div class="admin-name">Zenn</div>
+          <div class="admin-role">Owner</div>
+        </div>
+        <div class="admin-card" data-name="Zann" data-role="Admin" data-link="https://www.tiktok.com/@zanmichie_?_t=ZS-90VgIZO8CZA&_r=1">
+          <div class="admin-name">Zann</div>
+          <div class="admin-role">Admin</div>
+        </div>
+        <div class="admin-card" data-name="Zevv" data-role="Admin" data-link="https://www.tiktok.com/@zevvalexandra?_t=ZS-90V7i8jupVt&_r=1">
+          <div class="admin-name">Zevv</div>
+          <div class="admin-role">Admin</div>
+        </div>
+        <div class="admin-card" data-name="Dami" data-role="Admin" data-link="https://www.tiktok.com/@damichie?_t=ZS-90V7bTdJKWC&_r=1">
+          <div class="admin-name">Dami</div>
+          <div class="admin-role">Admin</div>
+        </div>
+        <div class="admin-card" data-name="Steven" data-role="Admin" data-link="https://www.tiktok.com/@stevnsaa?_t=ZS-90V7laCFgMH&_r=1">
+          <div class="admin-name">Steven</div>
+          <div class="admin-role">Admin</div>
+        </div>
+        <div class="admin-card" data-name="Xenz" data-role="Admin" data-link="https://www.tiktok.com/@xenzoctaviani?_t=ZS-90V8hLLbTgV&_r=1">
+          <div class="admin-name">Xenz</div>
+          <div class="admin-role">Admin</div>
+        </div>
+        <div class="admin-card" data-name="Haikal" data-role="Admin" data-link="https://www.tiktok.com/@kalz.mw?_t=ZS-90VKDwp9yY1&_r=1">
+          <div class="admin-name">Haikal</div>
+          <div class="admin-role">Admin</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h2 class="section-title">Galeri</h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="grup_ofc.jpeg" alt="Grup Official Michie World">
+        </div>
+        <div class="gallery-item">
+          <img src="saluran_mw.jpeg" alt="Saluran Michie World">
+        </div>
+        <div class="gallery-item">
+          <img src="akun_tiktok.jpeg" alt="Akun TikTok Michie World">
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h2 class="section-title">Ikuti Kami</h2>
+      <div class="links-container">
+        <a href="https://linktr.ee/ZennMilynn" target="_blank" class="link-card">
+          <div class="link-title">🔗 Linktree</div>
+          <div class="link-desc">Link resmi Owner Zenn</div>
+        </a>
+        <a href="https://chat.whatsapp.com/IuJm7U5KARdAu8BHpt747i" target="_blank" class="link-card">
+          <div class="link-title">💬 Grup WhatsApp</div>
+          <div class="link-desc">Grup chat official MW</div>
+        </a>
+        <a href="https://whatsapp.com/channel/0029VagZL4P72WU1ccRubJ1E" target="_blank" class="link-card">
+          <div class="link-title">📢 Saluran WhatsApp</div>
+          <div class="link-desc">Update terbaru MW</div>
+        </a>
+        <a href="https://www.tiktok.com/@ofcmichieworld?_t=zs-8w3wgkcs2m6&_r=1" target="_blank" class="link-card">
+          <div class="link-title">🎵 TikTok Official</div>
+          <div class="link-desc">Konten Michie World</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    Website dibuat oleh <a href="https://stevensaa-re.github.io/stvnproject" target="_blank">STN Project Reborn</a>
   </footer>
 
-  <div class="popup-bg" id="popupBg">
-    <div class="popup" id="popup">
-      <p id="popupText"></p>
-      <button class="go-btn" id="goBtn">Lanjutkan</button>
-      <button class="cancel-btn" id="cancelBtn">Batal</button>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="modal-title" id="modalText"></div>
+      <div class="modal-buttons">
+        <button class="btn btn-primary" id="modalConfirm">Lanjutkan</button>
+        <button class="btn btn-secondary" id="modalCancel">Batal</button>
+      </div>
     </div>
   </div>
 
   <script>
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver(entries => {
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      themeToggle.textContent = body.classList.contains('light-mode') ? '🌙' : '☀️';
+    });
+
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          entry.target.classList.remove("hidden");
+          entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.2 });
+    }, observerOptions);
 
-    sections.forEach(section => observer.observe(section));
-
-    const toggleBtn = document.getElementById("themeToggle");
-    toggleBtn.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-      toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
+    document.querySelectorAll('.section-card').forEach(card => {
+      observer.observe(card);
     });
 
-    const popupBg = document.getElementById("popupBg");
-    const popupText = document.getElementById("popupText");
-    const goBtn = document.getElementById("goBtn");
-    const cancelBtn = document.getElementById("cancelBtn");
-    let currentLink = "";
+    const modal = document.getElementById('modal');
+    const modalText = document.getElementById('modalText');
+    const modalConfirm = document.getElementById('modalConfirm');
+    const modalCancel = document.getElementById('modalCancel');
+    let currentLink = '';
 
-    document.querySelectorAll(".admin-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const name = btn.getAttribute("data-name");
-        const link = btn.getAttribute("data-link");
-        currentLink = link;
-        popupText.textContent = `Kamu akan menuju ke akun TikTok ${name}`;
-        popupBg.style.display = "flex";
+    document.querySelectorAll('.admin-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const name = card.dataset.name;
+        const role = card.dataset.role;
+        currentLink = card.dataset.link;
+        modalText.textContent = `Kamu akan menuju ke akun TikTok ${name} (${role})`;
+        modal.classList.add('active');
       });
     });
 
-    goBtn.addEventListener("click", () => {
-      window.open(currentLink, "_blank");
-      popupBg.style.display = "none";
+    modalConfirm.addEventListener('click', () => {
+      window.open(currentLink, '_blank');
+      modal.classList.remove('active');
     });
 
-    cancelBtn.addEventListener("click", () => {
-      popupBg.style.display = "none";
+    modalCancel.addEventListener('click', () => {
+      modal.classList.remove('active');
     });
 
-    popupBg.addEventListener("click", (e) => {
-      if (e.target === popupBg) popupBg.style.display = "none";
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    document.querySelector('.scroll-indicator').addEventListener('click', () => {
+      document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
     });
   </script>
 </body>
